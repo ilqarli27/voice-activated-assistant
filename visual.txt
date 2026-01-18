@@ -1,3 +1,11 @@
+🟢 ADDIM 1: PROJECT STRUCTURE (ƏN BİRİNCİ)
+
+📍 Harada: Lokal komputer (VS Code)
+
+Ediləcək:
+
+Python project folder yarat:
+
 voice_assistant/
 │
 ├── app.py
@@ -11,3 +19,160 @@ voice_assistant/
 └── services/
     ├── weather.py
     └── reminder.py
+
+
+📌 Niyə?
+Sonra qarışıqlıq olmasın, hər şey modular olsun.
+
+🟢 ADDIM 2: GOOGLE CLOUD – SPEECH TO TEXT
+
+📍 Harada: Google Cloud Console
+
+Ediləcək:
+
+Google Cloud project aç
+
+Speech-to-Text API aktiv et
+
+Service Account key (JSON) al
+
+Local-da env variable et:
+
+export GOOGLE_APPLICATION_CREDENTIALS="key.json"
+
+
+📌 Nəticə:
+Sən səs verirsən → Google onu text edir
+
+🟢 ADDIM 3: PYTHON → VOICE → TEXT (LOCAL TEST)
+
+📍 Harada: Python (speech_to_text.py)
+
+Ediləcək:
+
+Mikrofon input al
+
+Səsi Google API-yə göndər
+
+Console-da text çap et
+
+📌 Bu mərhələdə hələ NLP YOXDUR
+Sadəcə:
+
+“Set a reminder” → "set a reminder"
+
+📌 Əgər bu işləmirsə → heç nəyə keçmirsən
+
+🟢 ADDIM 4: DIALOGFLOW AGENT YARAT (NLP BAŞLAYIR)
+
+📍 Harada: Dialogflow Console
+
+Ediləcək:
+
+Agent yarat
+
+Intents:
+
+SetReminder
+
+GetWeather
+
+SendMessage
+
+Entities:
+
+@sys.time
+
+@sys.date
+
+custom: message_text
+
+📌 Burda səs YOX, sadəcə TEXT → INTENT
+
+Test:
+
+Input: Set reminder for 6 pm
+Output: SetReminder + time=18:00
+
+🟢 ADDIM 5: FLASK BACKEND (KÖPRÜ ROLU)
+
+📍 Harada: app.py (Flask)
+
+Ediləcək:
+
+Flask server qur:
+
+@app.route("/webhook", methods=["POST"])
+def webhook():
+    intent = request.json["queryResult"]["intent"]["displayName"]
+
+
+Dialogflow fulfillment → Flask webhook-a bağla
+
+📌 Axın belə olur:
+
+Text → Dialogflow → Flask → cavab
+
+🟢 ADDIM 6: DATABASE (REMINDER SAXLAMA)
+
+📍 Harada: SQLite (database.py)
+
+Ediləcək:
+
+reminders table
+
+Flask-dan reminder insert et
+
+📌 Hələ səs YOX, logic test edirsən
+
+🟢 ADDIM 7: WEATHER SERVICE
+
+📍 Harada: weather.py
+
+Ediləcək:
+
+Weather API və ya mock data
+
+Flask intent görə çağırır
+
+📌 Intent → Service → Response
+
+🟢 ADDIM 8: FULL PIPELINE BİRLƏŞDİR
+
+📍 ƏN VACİB ADDIM
+
+Axın TAM OLARAQ:
+Mikrofon
+   ↓
+Speech-to-Text (Google)
+   ↓
+Text
+   ↓
+Dialogflow
+   ↓
+Intent + Entities
+   ↓
+Flask Backend
+   ↓
+Database / Weather
+   ↓
+Text cavab
+
+
+İstəsən sonradan:
+
+Text-to-Speech əlavə edə bilərsən
+
+🟢 ADDIM 9: ERROR & ACCURACY
+
+📍 Harada: Hər layer-də
+
+Speech error
+
+Wrong intent
+
+Missing time/date
+
+Fallback intent yarat:
+
+“Başa düşmədim, bir də deyə bilərsən?”
