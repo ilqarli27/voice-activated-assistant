@@ -1,0 +1,11 @@
+🔹 PARALLEL FRONT-END & BACK-END PLAN
+Mərhələ	Front-End (Nəfər 1)	Back-End (Nəfər 2)	Nəticə
+1️⃣ Project Setup & Structure	Front-end folder, HTML/CSS/JS basic setup	Back-end folder, Flask + Python virtual env, requirements.txt	Layihə strukturu hazırdır, hər iki tərəf işləməyə başlayır
+2️⃣ Voice Input → Text (UI + Mic Button)	Web page dizaynı, mic button, UI test	Speech-to-Text API inteqrasiya, Python script səs → text, server endpoint	Səs giriş UI-dən backend-ə göndərilir
+3️⃣ Dialogflow Agent Integration	Front-end: input text göndərmə formu	Back-end: Dialogflow webhook, intent parsing	Text → Intent → Response axını işləyir
+4️⃣ Display Response / Text-to-Speech	UI-da cavabı göstərmə, optional playback button	Google TTS API inteqrasiya, response səsə çevrilir	Cavab həm yazılı, həm danışıq şəklində gəlir
+5️⃣ Reminder / Message / Weather Forms	Front-end: input form, calendar/time picker	Back-end: Reminder CRUD, Weather API call, Message handling	Task logic tam işləyir, məlumat saxlanır
+6️⃣ Full Pipeline Test	Front-end test: input → output	Back-end test: endpoint + database + services	End-to-end sınaq, hər şey işləyir
+7️⃣ Context Management (Optional)	UI üçün multi-step conversation handling	Back-end: Dialogflow context management, session handling	Multi-step conversation mümkündür
+8️⃣ Error Handling / Fallback	Front-end: user-friendly error message	Back-end: speech & intent error handling	Səhvlər idarə olunur, sistem stabil işləyir
+9️⃣ Logging & History	Front-end: optional logs display	Back-end: command history + error logs	Debug və report üçün tam hazır
