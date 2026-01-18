@@ -1,0 +1,13 @@
+voice_assistant/
+│
+├── app.py
+├── requirements.txt
+├── speech/
+│   └── speech_to_text.py
+├── nlp/
+│   └── dialogflow_handler.py
+├── db/
+│   └── database.py
+└── services/
+    ├── weather.py
+    └── reminder.py
