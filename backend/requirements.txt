@@ -1,6 +1,0 @@
-Flask==2.3.2
-dialogflow==2.0.0
-google-cloud-speech==2.19.0
-protobuf==3.20.3
-requests==2.31.0
-
